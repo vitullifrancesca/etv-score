@@ -19,7 +19,6 @@
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Calcolatore di Punteggio&lt;/title&gt;</p>
 <p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>/* Aggiunta di stile per una migliore visualizzazione */</p>
 <p class="p1"><span class="Apple-converted-space">        </span>body {</p>
 <p class="p1"><span class="Apple-converted-space">            </span>font-family: Arial, sans-serif;</p>
 <p class="p1"><span class="Apple-converted-space">            </span>background-color: #f0f0f0;</p>
@@ -113,7 +112,7 @@
 <p class="p1">&lt;/div&gt;</p>
 <p class="p2"><br></p>
 <p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Aggiungiamo la logica per il calcolo del punteggio</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Funzione per il calcolo del punteggio</p>
 <p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('form-punteggio').addEventListener('submit', function(e) {</p>
 <p class="p1"><span class="Apple-converted-space">        </span>e.preventDefault();</p>
 <p class="p2"><br></p>
@@ -124,17 +123,26 @@
 <p class="p2"><br></p>
 <p class="p1"><span class="Apple-converted-space">        </span>let punteggio = 0;</p>
 <p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Logica per il calcolo del punteggio basata sulla tabella fornita</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Aggiungiamo il punteggio basato sull'età</p>
 <p class="p1"><span class="Apple-converted-space">        </span>if (eta === "0-1") {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>punteggio = (shunt === "yes") ? 0 : 10;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>punteggio += (shunt === "yes") ? 0 : 10;</p>
 <p class="p1"><span class="Apple-converted-space">        </span>} else if (eta === "1-6") {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>punteggio = (eziologia === "myelomeningocele") ? 20 : (shunt === "no" ? 10 : 0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>punteggio += 10;</p>
 <p class="p1"><span class="Apple-converted-space">        </span>} else if (eta === "6-12") {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>punteggio = (eziologia === "aqueductal") ? 30 : 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>punteggio += 30;</p>
 <p class="p1"><span class="Apple-converted-space">        </span>} else if (eta === "1-10") {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>punteggio = 40;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>punteggio += 40;</p>
 <p class="p1"><span class="Apple-converted-space">        </span>} else if (eta === "&gt;10") {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>punteggio = 50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>punteggio += 50;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Aggiungiamo il punteggio basato sull'eziologia</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (eziologia === "post-infectious") {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>punteggio += 0;<span class="Apple-converted-space">  </span>// Nessun punteggio aggiuntivo per post-infectious</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (eziologia === "myelomeningocele") {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>punteggio += 20;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} else if (eziologia === "aqueductal") {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>punteggio += 30;</p>
 <p class="p1"><span class="Apple-converted-space">        </span>}</p>
 <p class="p2"><br></p>
 <p class="p1"><span class="Apple-converted-space">        </span>// Mostra il punteggio all'utente</p>
